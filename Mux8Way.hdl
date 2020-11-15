@@ -1,0 +1,27 @@
+/** Mux8Way
+	Output=a if sel=000
+	Output=b if sel=001
+	Output=c if sel=010
+	Output=d if sel=011
+	Output=e if sel=100
+	Output=f if sel=101
+	Output=g if sel=110
+	Output=h if sel=111
+*/
+
+CHIP Mux8Way{
+	IN a,b,c,d,e,f,g,h,sel[3];
+	OUT out;
+	
+	PARTS:
+		Not16(in[0]=sel[0], in[1]=sel[1],in[2]=sel[2], out[0]=sel0I,out[1]=sel1I, out[2]=sel2I);
+		And4Way(a=a, b=sel0I,  c=sel1I,  d=sel2I,  out=selecta);
+		And4Way(a=b, b=sel[0], c=sel1I,  d=sel2I,  out=selectb);
+		And4Way(a=c, b=sel0I,  c=sel[1], d=sel2I,  out=selectc);
+		And4Way(a=d, b=sel[0], c=sel[1], d=sel2I,  out=selectd);
+		And4Way(a=e, b=sel0I,  c=sel1I,  d=sel[2], out=selecte);
+		And4Way(a=f, b=sel[0], c=sel1I,  d=sel[2], out=selectf);
+		And4Way(a=g, b=sel0I,  c=sel[1], d=sel[2], out=selectg);
+		And4Way(a=h, b=sel[0], c=sel[1], d=sel[2], out=selecth);
+		Or8Way(in[0]=selecta, in[1]=selectb, in[2]=selectc, in[3]=selectd, in[4]=selecte, in[5]=selectf, in[6]=selectg, in[7]=selecth, out=out);
+}
