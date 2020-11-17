@@ -1,0 +1,11 @@
+/**
+This Chip is purposely designed to set its output to the Most Significant Bit of an input 
+*/
+
+CHIP Msb{
+	IN in[16];
+	OUT out;
+	
+	PARTS:
+		And(a=in[15], b=true, out=out);
+}
