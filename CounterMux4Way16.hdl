@@ -1,0 +1,64 @@
+/* /* Building the 16-bit Multiplexor for a counter */
+/* Working Principle:
+
+if reset=1:		out=0;
+else if load=1:	out=in;
+else if inc=1:	out=in+1;
+else 			out=out
+
+*/
+
+CHIP CounterMux4Way16{
+	IN in[16],zero[16],previous[16],increament[16], load, inc, reset;
+	OUT out[16];
+	
+PARTS:
+ CounterMux4Way(in=in[0],  zero=zero[0],  previous=previous[0],  
+				increament=increament[0],  load=load, inc=inc, reset=reset, out=out[0]);	
+				
+ CounterMux4Way(in=in[1],  zero=zero[1],  previous=previous[1],  
+				increament=increament[1],  load=load, inc=inc, reset=reset, out=out[1]); 
+				
+ CounterMux4Way(in=in[2],  zero=zero[2],  previous=previous[2],  
+				increament=increament[2],  load=load, inc=inc, reset=reset, out=out[2]);
+				
+ CounterMux4Way(in=in[3],  zero=zero[3],  previous=previous[3],  
+				increament=increament[3],  load=load, inc=inc, reset=reset, out=out[3]);
+				
+ CounterMux4Way(in=in[4],  zero=zero[4],  previous=previous[4],  
+				increament=increament[4],  load=load, inc=inc, reset=reset, out=out[4]);
+				
+ CounterMux4Way(in=in[5],  zero=zero[5],  previous=previous[5],  
+				increament=increament[5],  load=load, inc=inc, reset=reset, out=out[5]);
+				
+ CounterMux4Way(in=in[6],  zero=zero[6],  previous=previous[6],  
+				increament=increament[6],  load=load, inc=inc, reset=reset, out=out[6]);
+				
+ CounterMux4Way(in=in[7],  zero=zero[7],  previous=previous[7],  
+				increament=increament[7],  load=load, inc=inc, reset=reset, out=out[7]);
+				
+ CounterMux4Way(in=in[8],  zero=zero[8],  previous=previous[8],  
+				increament=increament[8],  load=load, inc=inc, reset=reset, out=out[8]);
+				
+ CounterMux4Way(in=in[9],  zero=zero[9],  previous=previous[9], 
+				increament=increament[9],  load=load, inc=inc, reset=reset, out=out[9]);
+				
+ CounterMux4Way(in=in[10], zero=zero[10], previous=previous[10], 
+				increament=increament[10], load=load, inc=inc, reset=reset, out=out[10]);
+				
+ CounterMux4Way(in=in[11], zero=zero[11], previous=previous[11], 
+				increament=increament[11], load=load, inc=inc, reset=reset, out=out[11]);
+				
+ CounterMux4Way(in=in[12], zero=zero[12], previous=previous[12], 
+				increament=increament[12], load=load, inc=inc, reset=reset, out=out[12]);
+				
+ CounterMux4Way(in=in[13], zero=zero[13], previous=previous[13], 
+				increament=increament[13], load=load, inc=inc, reset=reset, out=out[13]);
+				
+ CounterMux4Way(in=in[14], zero=zero[14], previous=previous[14], 
+				increament=increament[14], load=load, inc=inc, reset=reset, out=out[14]);
+				
+ CounterMux4Way(in=in[15], zero=zero[15], previous=previous[15], 
+				increament=increament[15], load=load, inc=inc, reset=reset, out=out[15]);
+}
+	

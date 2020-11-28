@@ -1,0 +1,11 @@
+/* Gate gives the output of And Operation on three values */
+
+
+CHIP And3Way{
+	IN a, b, c;
+	OUT out;
+	
+	PARTS:
+			And(a=a, b=b, out=out0);
+			And(a=out0, b=c, out=out);			
+}

@@ -1,0 +1,35 @@
+/* Building the Multiplexor for a counter */
+/* Working Principle:
+
+if reset=1:		out=0;
+else if load=1:	out=in;
+else if inc=1:	out=in+1;
+else 			out=out
+
+*/
+
+CHIP CounterMux4Way{
+	IN in,zero,previous,increament, load, inc, reset;
+	OUT out;
+	
+	PARTS:	
+			//Creating a Not states of the control bits
+			Not(in=load, out=NotLoad);
+			Not(in=inc, out=NotInc);
+			Not(in=reset, out=NotReset);
+			
+			//Creating the control bits states that satisfies each input
+			And3Way(a=in, b=load, c=NotReset, out=inState);
+			
+			And3Way(a=previous, b=NotInc, c=NotReset, out=out0);
+			And(a=NotLoad, b=out0, out=previousState);
+			
+			And(a=zero, b=reset, out=resetState);
+			
+			And3Way(a=increament, b=NotLoad, c=NotReset, out=out1);
+			And(a=out1, b=inc, out=increamentState);
+			
+			//Selecting one of the input
+			Or4Way(a=inState, b=previousState, c=resetState, d=increamentState, out=out);
+			
+}
